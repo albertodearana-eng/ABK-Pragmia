@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --abk-red: #88141A;
+  --abk-red-mid: #A01E25;
+  --abk-red-light: #F2D0D1;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-abk-red text-white px-4 py-2 rounded-lg font-medium hover:bg-abk-red-mid transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-white text-abk-red border border-abk-red px-4 py-2 rounded-lg font-medium hover:bg-abk-red-light transition-colors;
+  }
+  .btn-ghost {
+    @apply text-gray-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-gray-200 shadow-sm;
+  }
+  .input {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-abk-red/30 focus:border-abk-red transition-colors;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  .badge-vigente {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800;
+  }
+  .badge-vencida {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800;
+  }
+  .badge-no-contratada {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600;
+  }
+  .badge-valorar {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800;
+  }
+  .section-header {
+    @apply bg-abk-red text-white px-4 py-2.5 rounded-t-lg font-semibold text-sm;
+  }
+  .detail-toggle {
+    @apply flex items-center gap-1.5 text-sm text-abk-red font-medium hover:text-abk-red-mid cursor-pointer transition-colors;
+  }
+}
