@@ -108,12 +108,14 @@ Extrae todos los datos que encuentres. Si un campo no aparece en el documento, u
     const responseText = extractionResponse.content[0].type === 'text'
       ? extractionResponse.content[0].text : ''
 
-    let extracted: any = {}
+   let extracted: any = {}
     try {
-      const clean = responseText.replace(/```json\n?|\n?```/g, '').trim()
-      extracted = JSON.parse(clean)
+      const clean = responseText.replace(/```json\n?|\n?```/g, '').replace(/```\n?/g, '').trim()
+      const jsonMatch = clean.match(/\{[\s\S]*\}/)
+      extracted = JSON.parse(jsonMatch ? jsonMatch[0] : clean)
     } catch {
-      return NextResponse.json({ error: 'Error al interpretar la respuesta de Claude' }, { status: 500 })
+      return NextResponse.json({ error: 'Error al interpretar la respuesta de Claude. Respuesta: ' + responseText.substring(0, 200) }, { status: 500 })
+    }, { status: 500 })
     }
 
     // 3. Obtener o crear la póliza para este ramo
