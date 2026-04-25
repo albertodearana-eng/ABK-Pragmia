@@ -22,8 +22,8 @@ export async function POST(req: NextRequest) {
 
     // 1. Subir PDF a Supabase Storage
     const fileBuffer = await file.arrayBuffer()
-    const fileName = `${user.id}/${clienteId}/${Date.now()}-${file.name}`
-
+const safeName = file.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9._-]/g, '_')
+const fileName = `${user.id}/${clienteId}/${Date.now()}-${safeName}`
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('polizas-pdf')
       .upload(fileName, fileBuffer, { contentType: 'application/pdf' })
