@@ -40,7 +40,7 @@ const fileName = `${user.id}/${clienteId}/${Date.now()}-${safeName}`
     const base64PDF = Buffer.from(fileBuffer).toString('base64')
 
     const extractionResponse = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5-20251001',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 4000,
       messages: [{
         role: 'user',
